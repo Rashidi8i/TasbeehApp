@@ -23,7 +23,9 @@ class DBHelper {
   Future<Database> initDatabase() async {
     io.Directory documentDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentDirectory.path, 'reportData.db');
-    databaseFactory = databaseFactoryFfi;
+    if (kDebugMode) {
+      print(documentDirectory.toString());
+    }
 
     var db = await openDatabase(
       path,
